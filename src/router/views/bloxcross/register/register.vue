@@ -1,0 +1,236 @@
+<script>
+import appConfig from "@/app.config";
+import { required, email } from "vuelidate/lib/validators";
+
+/**
+ * Register sample page
+ */
+export default {
+  page: {
+    title: "Register user",
+    meta: [
+      {
+        name: "description",
+        content: appConfig.description,
+      },
+    ],
+  },
+  data() {
+    return {
+    user: {
+    fname:"jhon",
+    lname:"diaz",
+    email:"systemaf2@gmail.com",
+    phone:"573103680442",
+    password:"My$tandard15",
+    dob:"1964-01-24",
+    domicile:"US",
+    language:"eng",
+    preferred_currency: "United States Of America (The)|US Dollar|USD"
+
+},
+      submitted: false,
+      regError: null,
+      tryingToRegister: false,
+      isRegisterError: false,
+      registerSuccess: false,
+    };
+  },
+  validations: {
+    user: {
+      firstname: {
+        required,
+      },
+      lastname: {
+        required,
+      },
+      phone: {
+        required,
+      },
+      email: {
+        required,
+        email,
+      },
+      password: {
+        required,
+      },
+    },
+  },
+
+
+};
+</script>
+<template>
+  <div class="account-pages my-5 pt-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-5">
+          <div class="card overflow-hidden">
+            <div class="bg-soft bg-primary">
+              <div class="row">
+                <div class="col-7">
+                  <div class="text-primary p-4">
+                    <h5 class="text-primary">Register</h5>
+                    <p>Get your free Skote account now.</p>
+                  </div>
+                </div>
+                <div class="col-5 align-self-end">
+                  <img
+                    src="@/assets/images/profile-img.png"
+                    alt
+                    class="img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="card-body pt-0">
+              <div>
+                <a href="/">
+                  <div class="avatar-md profile-user-wid mb-4">
+                    <span class="avatar-title rounded-circle bg-light">
+                      <img
+                        src="@/assets/images/logo.svg"
+                        alt
+                        class="rounded-circle"
+                        height="34"
+                      />
+                    </span>
+                  </div>
+                </a>
+              </div>
+              <div class="p-2">
+                <form class="form-horizontal">
+                  <div class="mb-3">
+                    <label for="useremail">Email</label>
+                    <input
+                      v-model="user.email"
+                      type="email"
+                      class="form-control"
+                      id="useremail"
+                      placeholder="Enter email"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="firstname">Firstname</label>
+                    <input
+                      v-model="user.fname"
+                      type="text"
+                      class="form-control"
+                      id="firstname"
+                      placeholder="Enter firstname"
+                    />
+                  </div>
+
+                    <div class="mb-3">
+                    <label for="lastname">Lastname</label>
+                    <input
+                      v-model="user.lname"
+                      type="text"
+                      class="form-control"
+                      id="lastname"
+                      placeholder="Enter lastname"
+                    />
+                  </div>
+
+                 <div class="mb-3">
+                    <label for="Phone">Phone</label>
+                    <input
+                      v-model="user.phone"
+                      type="text"
+                      class="form-control"
+                      id="Phone"
+                      placeholder="Enter Phone"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="userpassword">Password</label>
+                    <input
+                      v-model="user.password"
+                      type="password"
+                      class="form-control"
+                      id="userpassword"
+                      placeholder="Enter password"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="userpassword">Password</label>
+                    <input
+                      v-model="user.password"
+                      type="password"
+                      class="form-control"
+                      id="userpassword"
+                      placeholder="Enter password"
+                    />
+                  </div>
+
+
+                  <div class="mt-4 d-grid">
+                    <button class="btn btn-primary" type="submit">
+                      Register
+                    </button>
+                  </div>
+                  <div class="mt-4 text-center">
+                    <h5 class="font-size-14 mb-3">Sign up using</h5>
+
+                    <ul class="list-inline">
+                      <li class="list-inline-item">
+                        <a
+                          href="javascript: void(0);"
+                          class="social-list-item bg-primary text-white border-primary"
+                        >
+                          <i class="mdi mdi-facebook"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a
+                          href="javascript: void(0);"
+                          class="social-list-item bg-info text-white border-info"
+                        >
+                          <i class="mdi mdi-twitter"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a
+                          href="javascript: void(0);"
+                          class="social-list-item bg-danger text-white border-danger"
+                        >
+                          <i class="mdi mdi-google"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="mt-4 text-center">
+                    <p class="mb-0">
+                      By registering you agree to the Skote
+                      <a href="javascript: void(0);" class="text-primary"
+                        >Terms of Use</a
+                      >
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 text-center">
+            <p>
+              Already have an account ?
+              <router-link
+                tag="a"
+                to="/auth/login-1"
+                class="fw-medium text-primary"
+                >Login</router-link
+              >
+            </p>
+            <p>
+              © {{ new Date().getFullYear() }} Skote. Crafted with
+              <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
